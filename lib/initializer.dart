@@ -2,11 +2,11 @@ part of 'rox.dart';
 
 
 class Initializer {
-  static void init({AppColors? colorTheme}){
+  static void init({RoxAppColors? colorTheme}){
     if(colorTheme != null){
-      Get.put<AppColors>(colorTheme, tag: AppColors.tag);
+      Get.put<RoxAppColors>(colorTheme, tag: RoxAppColors.tag);
     }else{
-      Get.put<AppColors>(appColorsInstance, tag: AppColors.tag);
+      Get.put<RoxAppColors>(appColorsInstance, tag: RoxAppColors.tag);
     }
   }
 }

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rox/theme/rox_colors.dart';
 
-class AppColors {
+class RoxAppColors {
   static String tag = 'roxPackageColors';
 
-  AppColors({
+  RoxAppColors({
     required this.neutral900,
     required this.neutral800,
     required this.neutral700,
@@ -42,7 +42,7 @@ class AppColors {
     required this.error50,
   });
 
-  static AppColors get to => Get.find(tag: AppColors.tag);
+  static RoxAppColors get to => Get.find(tag: RoxAppColors.tag);
 
   final Color neutral900;
   final Color neutral800;

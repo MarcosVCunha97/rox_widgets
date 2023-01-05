@@ -1,7 +1,7 @@
 import 'package:rox/theme/app_colors.dart';
 import 'package:rox/theme/rox_colors.dart';
 
-AppColors appColorsInstance = AppColors(
+RoxAppColors appColorsInstance = RoxAppColors(
   neutral900: RoxColors.neutral900,
   neutral800: RoxColors.neutral800,
   neutral700: RoxColors.neutral700,
