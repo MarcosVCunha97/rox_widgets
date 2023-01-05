@@ -1,11 +1,12 @@
 part of 'rox.dart';
-// import 'package:get/get.dart';
-// import 'package:rox/theme/rox_colors.dart';
+
 
 class Initializer {
-  static void init({RoxColors? colorTheme}){
+  static void init({AppColors? colorTheme}){
     if(colorTheme != null){
-      Get.put<RoxColors>(colorTheme, tag: 'colors');
+      Get.put<AppColors>(colorTheme, tag: AppColors.tag);
+    }else{
+      Get.put<AppColors>(appColorsInstance, tag: AppColors.tag);
     }
   }
 }
