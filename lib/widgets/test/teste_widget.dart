@@ -7,7 +7,7 @@ class RoxTestWidget extends StatelessWidget {
 
   final Color? color;
 
-  Color get _color => color ?? RoxAppColors.to.error500;
+  Color get _color => color ?? RoxColors.to.error500;
 
   @override
   Widget build(BuildContext context) {

@@ -1,50 +1,81 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rox/theme/app_colors.dart';
+import 'package:rox/theme/rox_colors.dart';
 
-abstract class RoxColors {
+class RoxColors {
+  static String tag = 'roxPackageColors';
 
-  static const Color transparent = Colors.transparent;
-  static const Color white = Color(0XFFFFFFFF);
-  static const Color black = Color(0XFF000000);
+  RoxColors({
+    required this.neutral900,
+    required this.neutral800,
+    required this.neutral700,
+    required this.neutral600,
+    required this.neutral500,
+    required this.neutral400,
+    required this.neutral300,
+    required this.neutral200,
+    required this.neutral100,
+    required this.neutral50,
+    required this.success900,
+    required this.success700,
+    required this.success500,
+    required this.success400,
+    required this.success300,
+    required this.success200,
+    required this.success100,
+    required this.success50,
+    required this.warning900,
+    required this.warning700,
+    required this.warning500,
+    required this.warning400,
+    required this.warning300,
+    required this.warning200,
+    required this.warning100,
+    required this.warning50,
+    required this.error900,
+    required this.error700,
+    required this.error500,
+    required this.error400,
+    required this.error300,
+    required this.error200,
+    required this.error100,
+    required this.error50,
+  });
 
-  static const Color neutral900 = Color(0XFF212121);
-  static const Color neutral800 = Color(0XFF393939);
-  static const Color neutral700 = Color(0XFF545454);
-  static const Color neutral600 = Color(0XFF6E6E6E);
-  static const Color neutral500 = Color(0XFF898989);
-  static const Color neutral400 = Color(0XFFA4A4A4);
-  static const Color neutral300 = Color(0XFFBCBCBC);
-  static const Color neutral200 = Color(0XFFD3D3D3);
-  static const Color neutral100 = Color(0XFFEAEAEA);
-  static const Color neutral50  = Color(0XFFF8F8F8);
+  static RoxColors get to => Get.find(tag: RoxColors.tag);
 
-  static const Color success900 = Color(0XFF267347);
-  static const Color success700 = Color(0XFF33995E);
-  static const Color success500 = Color(0XFF40BF76);
-  static const Color success400 = Color(0XFF66CC91);
-  static const Color success300 = Color(0XFF8CD9AD);
-  static const Color success200 = Color(0XFFB3E5C8);
-  static const Color success100 = Color(0XFFD9F3E4);
-  static const Color success50  = Color(0XFFD9F3E4);
-
-  static const Color warning900 = Color(0XFF997300);
-  static const Color warning700 = Color(0XFFCC9A00);
-  static const Color warning500 = Color(0XFFFFC000);
-  static const Color warning400 = Color(0XFFFFCD33);
-  static const Color warning300 = Color(0XFFFFD966);
-  static const Color warning200 = Color(0XFFFFE699);
-  static const Color warning100 = Color(0XFFFFF3CC);
-  static const Color warning50  = Color(0XFFFEFAEF);
-
-  static const Color error900 = Color(0XFF990000);
-  static const Color error700 = Color(0XFFCC0000);
-  static const Color error500 = Color(0XFFFF0000);
-  static const Color error400 = Color(0XFFFF3333);
-  static const Color error300 = Color(0XFFFF6666);
-  static const Color error200 = Color(0XFFFF9999);
-  static const Color error100 = Color(0XFFFFCCCC);
-  static const Color error50  = Color(0XFFFFF3F3);
+  final Color neutral900;
+  final Color neutral800;
+  final Color neutral700;
+  final Color neutral600;
+  final Color neutral500;
+  final Color neutral400;
+  final Color neutral300;
+  final Color neutral200;
+  final Color neutral100;
+  final Color neutral50;
+  final Color success900;
+  final Color success700;
+  final Color success500;
+  final Color success400;
+  final Color success300;
+  final Color success200;
+  final Color success100;
+  final Color success50;
+  final Color warning900;
+  final Color warning700;
+  final Color warning500;
+  final Color warning400;
+  final Color warning300;
+  final Color warning200;
+  final Color warning100;
+  final Color warning50;
+  final Color error900;
+  final Color error700;
+  final Color error500;
+  final Color error400;
+  final Color error300;
+  final Color error200;
+  final Color error100;
+  final Color error50;
 }
-
