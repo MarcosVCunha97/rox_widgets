@@ -12,6 +12,7 @@ class PageWrapper extends StatelessWidget {
     required this.child,
     this.loadingWidget,
     this.showAsOverlay = false,
+    this.showAppBar = false,
     // this.onWillPop,
   }) : super(key: key);
 
@@ -26,6 +27,9 @@ class PageWrapper extends StatelessWidget {
   // final Future<bool> Function()? onWillPop;
   /// Se overlay for true, a página por trás será mostrada e o loading ficara por cima, com barreira modal
   final bool showAsOverlay;
+
+  // Indica se deve mostrar a appbar com botão de voltar ao mostrar widgets de erro e página vazia
+  final bool showAppBar;
 
   bool get isLoading => status.value.isLoading;
   bool get hasError => status.value.hasError;
@@ -77,10 +81,11 @@ class PageWrapper extends StatelessWidget {
       return const SizedBox.shrink();
     } else if (!isEmpty && !hasError) {
       return child;
-    } else if (isEmpty) {
-      return RoxError.defaultEmptyState();
     } else {
-      return RoxError.defaultError();
+      return Scaffold(
+        appBar: showAppBar ? AppBar() : null,
+        body: isEmpty ? RoxError.defaultEmptyState() : RoxError.defaultError(),
+      );
     }
   }
 }
