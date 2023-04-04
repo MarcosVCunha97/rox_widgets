@@ -9,7 +9,7 @@ class PageWrapper extends StatelessWidget {
   const PageWrapper({
     Key? key,
     required this.status,
-    required this.child,
+    this.child,
     this.loadingWidget,
     this.showAsOverlay = false,
     this.showAppBar = false,
