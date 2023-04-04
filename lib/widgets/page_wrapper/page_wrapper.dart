@@ -13,12 +13,17 @@ class PageWrapper extends StatelessWidget {
     this.loadingWidget,
     this.showAsOverlay = false,
     this.showAppBar = false,
+    this.buildChild,
     // this.onWillPop,
   }) : super(key: key);
 
   final Rx<FetchDataStatusModel> status;
 
-  final Widget child;
+
+  @Deprecated('Use buildChild instead')
+  final Widget? child; // deprecated
+
+  final Function<Widget>(FetchDataStatusModel status)? buildChild;
 
   /// Se Loading widget for diferente de null, ele será usado no lugar do default
   final Widget? loadingWidget;
@@ -80,7 +85,11 @@ class PageWrapper extends StatelessWidget {
     if (isLoading && !showAsOverlay) {
       return const SizedBox.shrink();
     } else if (!isEmpty && !hasError) {
-      return child;
+      if(buildChild != null){
+        return buildChild!(status.value);
+      }else{
+        return child ?? const SizedBox.shrink();
+      }
     } else {
       return Scaffold(
         appBar: showAppBar ? AppBar() : null,
