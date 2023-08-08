@@ -34,6 +34,7 @@ class RoxDb implements RoxDatabase {
   @override
   Future<void> delete(String collection, {Map<String, dynamic>? query}) async {
     List<String> ids = _prefs.getStringList('storage-collection-$collection') ?? [];
+    List<String> removedIds = [];
     for (var i = 0; i < ids.length; i++) {
       Map<String, dynamic> element = await read(collection, ids[i]);
       bool shouldDelete = true;
@@ -46,12 +47,14 @@ class RoxDb implements RoxDatabase {
         }
       }
       if (shouldDelete) {
-        ids.removeAt(i);
+        removedIds.add(ids[i]);
         i--;
         await _prefs.remove('storage-$collection-${element['id']}');
       }
+      List<String> updatedIds = _prefs.getStringList('storage-collection-$collection') ?? [];
+      updatedIds.removeWhere((element) => removedIds.contains(element));
+      await _prefs.setStringList('storage-collection-$collection', updatedIds);
     }
-    await _prefs.setStringList('storage-collection-$collection', ids);
   }
 
   @override
