@@ -8,22 +8,25 @@ import 'package:rox/widgets/error_widgets/errors/rox_error.dart';
 class PageWrapper extends StatelessWidget {
   const PageWrapper({
     Key? key,
-    required this.status,
+    this.status,
+    this.statusList,
     this.child,
     this.loadingWidget,
     this.showAsOverlay = false,
     this.showAppBar = false,
     this.buildChild,
     // this.onWillPop,
-  }) : super(key: key);
+  })  : assert(status != null || (statusList != null && statusList.length > 0),
+            'status or statusList must be not null'),
+        super(key: key);
 
-  final Rx<FetchDataStatusModel> status;
-
+  final Rx<FetchDataStatusModel>? status;
+  final List<Rx<FetchDataStatusModel>>? statusList;
 
   @Deprecated('Use buildChild instead')
   final Widget? child; // deprecated
 
-  final Function<Widget>(FetchDataStatusModel status)? buildChild;
+  final Function<Widget>()? buildChild;
 
   /// Se Loading widget for diferente de null, ele será usado no lugar do default
   final Widget? loadingWidget;
@@ -36,15 +39,38 @@ class PageWrapper extends StatelessWidget {
   // Indica se deve mostrar a appbar com botão de voltar ao mostrar widgets de erro e página vazia
   final bool showAppBar;
 
-  bool get isLoading => status.value.isLoading;
-  bool get hasError => status.value.hasError;
-  bool get isEmpty => status.value.isEmpty;
+  bool get isLoading {
+    if (status != null) {
+      return status!.value.isLoading;
+    } else if (statusList != null) {
+      return statusList!.any((element) => element.value.isLoading);
+    }
+    return false;
+  }
+
+  bool get hasError {
+    if (status != null) {
+      return status!.value.hasError;
+    } else if (statusList != null) {
+      return statusList!.any((element) => element.value.hasError);
+    }
+    return false;
+  }
+
+  bool get isEmpty {
+    if (status != null) {
+      return status!.value.isEmpty;
+    } else if (statusList != null) {
+      return statusList!.any((element) => element.value.isEmpty);
+    }
+    return false;
+  }
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        if (status.value.isLoading) {
+        if (isLoading) {
           return false;
         }
         return true;
@@ -85,9 +111,9 @@ class PageWrapper extends StatelessWidget {
     if (isLoading && !showAsOverlay) {
       return const SizedBox.shrink();
     } else if (!isEmpty && !hasError) {
-      if(buildChild != null){
-        return buildChild!(status.value);
-      }else{
+      if (buildChild != null) {
+        return buildChild!();
+      } else {
         return child ?? const SizedBox.shrink();
       }
     } else {
