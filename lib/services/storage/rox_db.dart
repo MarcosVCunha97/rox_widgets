@@ -58,6 +58,15 @@ class RoxDb implements RoxDatabase {
   }
 
   @override
+  Future<void> deleteAll(String collection) async {
+    List<String> ids = _prefs.getStringList('storage-collection-$collection') ?? [];
+    for (var i = 0; i < ids.length; i++) {
+      await _prefs.remove('storage-$collection-${ids[i]}');
+    }
+    await _prefs.remove('storage-collection-$collection');
+  }
+
+  @override
   Future<List<Map<String, dynamic>>> getAll(String collection) async {
     List<String> collectionIds = _prefs.getStringList('storage-collection-$collection') ?? [];
     List<Map<String, dynamic>> objects = [];

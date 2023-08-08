@@ -9,4 +9,5 @@ abstract class RoxDatabase {
   Future<Map<String, dynamic>> read(String collection, String id);
   Future<void> write(String collection, Map<String, dynamic> value);
   Future<void> delete(String collection, {Map<String, dynamic>? query});
+  Future<void> deleteAll(String collection);
 }
